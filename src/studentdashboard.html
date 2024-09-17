@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="sdstyle.css" />
+  </head>
+  <header class="first-header">
+    <h1>Welcome, Student</h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#tutors">Available Tutors</a></li>
+        <li><a href="#schedule">Schedule a Session</a></li>
+        <li><a href="#resources">Study Resources</a></li>
+      </ul>
+    </nav>
+    <aside class="profile-picture">
+      <a href="profile.html">
+        <img src="images/profile-pic.png" alt="Profile Picture" class="profile-img" />
+      </a>
+    </aside>
+  </header>
+  <body>
+    <main>
+      <!-- Available Tutors Section -->
+      <section id="tutors" class="container">
+        <header>
+          <h2>Available Tutors</h2>
+        </header>
+        
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor1.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Lucky Nkosi</p>
+              <p><strong>Subject:</strong> Mathematics</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor2.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Jane Smith</p>
+              <p><strong>Subject:</strong> Physics</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <!-- Adding 7 more tutors -->
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor3.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Alex Turner</p>
+              <p><strong>Subject:</strong> Chemistry</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor4.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Emily Davis</p>
+              <p><strong>Subject:</strong> Biology</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor5.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Michael Brown</p>
+              <p><strong>Subject:</strong> English Literature</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor6.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Sarah Johnson</p>
+              <p><strong>Subject:</strong> Economics</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor7.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> David Green</p>
+              <p><strong>Subject:</strong> Computer Science</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor8.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Lisa White</p>
+              <p><strong>Subject:</strong> History</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor9.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Richard Black</p>
+              <p><strong>Subject:</strong> Art</p>
+            </figcaption>
+          </figure>
+        </article>
+
+      </section>
+
+      <!-- Schedule Session Section -->
+      <section id="schedule" class="schedule">
+        <header>
+          <h2>Schedule a Session</h2>
+        </header>
+        <form id="schedule-form">
+          <label for="tutor">Select Tutor:</label>
+          <select id="tutor" name="tutor">
+            <option value="john-doe">John Doe</option>
+            <option value="jane-smith">Jane Smith</option>
+            <option value="alex-turner">Alex Turner</option>
+            <option value="emily-davis">Emily Davis</option>
+            <option value="michael-brown">Michael Brown</option>
+            <option value="sarah-johnson">Sarah Johnson</option>
+            <option value="david-green">David Green</option>
+            <option value="lisa-white">Lisa White</option>
+            <option value="richard-black">Richard Black</option>
+          </select>
+          <label for="date">Select Date:</label>
+          <input type="date" id="date" name="date" required />
+          <label for="time">Select Time:</label>
+          <input type="time" id="time" name="time" required />
+          <button type="submit">Schedule</button>
+        </form>
+      </section>
+
+      <!-- Study Resources Section -->
+      <section id="resources" class="container">
+        <header>
+          <h2>Study Resources (via Google Drive)</h2>
+        </header>
+        <ul>
+          <li><a href="math-resources.html">Computer Science (First Year)</a></li>
+          <li><a href="psychology-resources.html">Psychology (Third Year)</a></li>
+          <li><a href="civil-engineering-resources.html">Civil Engineering (Second Year)</a></li>
+          <li><a href="biology-resources.html">Computer Science (Second Year)</a></li>
+          <li><a href="chemistry-resources.html">Actuarial Sciences (First Year)</a></li>
+          <li><a href="economics-resources.html">Accounting Science (Third Year)</a></li>
+          <li><a href="history-resources.html">Accounting Science (Second Year)</a></li>
+          <li><a href="english-resources.html">Construction Studies (First Year)</a></li>
+          <li><a href="art-resources.html">Art (First Year)</a></li>
+          <li><a href="physics-resources.html">Physics (Second Year)</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
+    </footer>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

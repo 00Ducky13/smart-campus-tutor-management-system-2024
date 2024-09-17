@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutor Dashboard</title>
+  <link rel="stylesheet" href="tdstyle.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Welcome, Tutor</h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#profile">Manage Profile</a></li>
+        <li><a href="#availability">Set Availability</a></li>
+        <li><a href="#sessions">Upcoming Sessions</a></li>
+      </ul>
+    </nav>
+    <aside class="profile-picture">
+      <a href="profile.html">
+        <img src="images/tutor-profile-pic.png" alt="Profile Picture" class="profile-img" />
+      </a>
+    </aside>
+  </header>
+
+  <main>
+    <!-- Manage Profile Section -->
+    <section id="profile" class="container">
+      <header>
+        <h2>Manage Your Profile</h2>
+      </header>
+      <form id="profile-form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" value="Lucky Nkosi" required />
+
+        <label for="subject">Subject Expertise:</label>
+        <input type="text" id="subject" name="subject" value="Mathematics" required />
+
+        <label for="bio">Short Bio:</label>
+        <textarea id="bio" name="bio" rows="4" placeholder="Write a short bio...">I have been tutoring mathematics for 5 years...</textarea>
+
+        <label for="profile-pic">Upload Profile Picture:</label>
+        <input type="file" id="profile-pic" name="profile-pic" />
+
+        <button type="submit">Save Profile</button>
+      </form>
+    </section>
+
+    <!-- Set Availability Section -->
+    <section id="availability" class="container">
+      <header>
+        <h2>Set Your Availability</h2>
+      </header>
+      <form id="availability-form">
+        <label for="available-date">Select Available Date:</label>
+        <input type="date" id="available-date" name="available-date" required />
+
+        <label for="start-time">Start Time:</label>
+        <input type="time" id="start-time" name="start-time" required />
+
+        <label for="end-time">End Time:</label>
+        <input type="time" id="end-time" name="end-time" required />
+
+        <button type="submit">Set Availability</button>
+      </form>
+    </section>
+
+    <!-- Upcoming Sessions Section -->
+    <section id="sessions" class="container">
+      <header>
+        <h2>Upcoming Sessions</h2>
+      </header>
+      <table id="upcoming-sessions">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Subject</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alice Johnson</td>
+            <td>2024-09-22</td>
+            <td>10:00 AM</td>
+            <td>Mathematics</td>
+          </tr>
+          <tr>
+            <td>Bob Smith</td>
+            <td>2024-09-23</td>
+            <td>12:00 PM</td>
+            <td>Physics</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
+  </footer>
+  <script type="module" src="tutordashscript.js"></script>
+</body>
+</html>
