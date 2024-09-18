@@ -21,7 +21,7 @@
       <aside class="container">
         <aside class="form-container">
           <mark class="logo-container">
-            <img src="images/witsLogo.png" alt="wits Logo" />
+            <img src="images/witsLogoRing.png" alt="wits Logo" />
             <p class="slogan">
               Conquer the edge!
             </p>
@@ -40,18 +40,20 @@
               </select>
             </aside>
             <mark class="input-field">
-              <input type="email" placeholder="Email" required name="email" />
+              <input id="loginEmail" type="email" placeholder="Email" required name="email" />
             </mark>
             <mark class="input-field">
               <input
+                id="loginPassword"
                 type="password"
                 placeholder="Password"
                 required
                 name="password"
+                
               />
             </mark>
             <mark class="action">
-              <button type="submit">Log In</button>
+              <button id="btnLogin" type="submit">Log In</button>
             </mark>
 
             <mark class="switch-form">
@@ -111,6 +113,6 @@
     <footer>
       <p id="foot">&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
     </footer>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="indexScripts.js"></script>
   </body>
 </html>
