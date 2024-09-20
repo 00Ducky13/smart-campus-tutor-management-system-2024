@@ -1,165 +1,161 @@
-/* Reset some default margins and paddings */
-body, html {
+/* Reset and base styles */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: white; /* Background color */
-}
-
-/* Header styles */
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: rgb(11, 9, 158);
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Navbar styles */
-.navbar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
-
-.navbar li {
-    margin-right: 20px;
-}
-
-.navbar ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 8px;
-    display: block;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  header {
+    background-color: #001f3f;
+    color: #fff;
+    padding: 20px 0;
     text-align: center;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: white;
-}
-
-/* Profile Picture */
-.profile-picture {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  header::before {
+    content: '';
     position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
-.profile-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-/* Manage Profile Section */
-.container {
-    margin: 20px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-.container header {
-    margin-bottom: 20px;
-    color: rgb(11, 9, 158);
-}
-
-.container input, .container textarea, .container select {
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: #f8f9fa;
-    color: #495057;
-}
-
-.container button {
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(11, 9, 158);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.container button:hover {
-    background-color: #ffb81c;
-}
-
-/* Availability Form */
-#availability-form label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-#availability-form input, #availability-form button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: #f8f9fa;
-    color: #495057;
-}
-
-/* Upcoming Sessions Table */
-#upcoming-sessions {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-#upcoming-sessions th, #upcoming-sessions td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-}
-
-#upcoming-sessions th {
-    background-color: rgb(11, 9, 158);
-    color: white;
-}
-
-#upcoming-sessions td {
-    background-color: #f8f9fa;
-}
-
-/* Footer styles */
-footer {
-    background-color: rgb(11, 9, 158);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    opacity: 0.6;
+    animation: slideIn 5s infinite alternate;
+  }
+  
+  @keyframes slideIn {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+  }
+  
+  .navbar ul {
+    list-style: none;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 0px;
-    height: 50px;
-}
-
-footer p {
-    color: white;
+    padding: 10px 0;
+  }
+  
+  .navbar li {
+    margin: 0 15px;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar a:hover {
+    color: #ffcc00;
+  }
+  
+  .profile-picture {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+  
+  .profile-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .container h2 {
+    background-color: #001f3f;
+    margin-bottom: 20px;
+  }
+  
+  form label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  
+  form input,
+  form textarea,
+  form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  form button {
+    background-color: #001f3f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #001f3f;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #001f3f;
+    color: #fff;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  footer {
     text-align: center;
-    margin: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-
-    #upcoming-sessions th, #upcoming-sessions td {
-        padding: 5px;
-    }
-}
+    padding: 20px;
+    background-color: #001f3f;
+    color: #fff;
+    margin-top: 30px;
+    border-top: 2px solid #fff;
+    position: relative;
+  }
+  
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 2px;
+    background-color: #fff;
+    transform: translateX(-50%);
+  }
+  

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutor Sessions</title>
+  <link rel="stylesheet" href="tdstyle.css" />
+</head>
+<body>
+  <h1>Tutor Sessions</h1>
+
+  <section id="pending-sessions">
+    <h2>Pending Sessions</h2>
+    <div id="session-list"></div>
+  </section>
+
+  <script>
+    const sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+
+    function renderSessions() {
+      const sessionList = document.getElementById('session-list');
+      sessionList.innerHTML = '';
+
+      sessions.forEach((session, index) => {
+        if (session.status === 'pending') {
+          const sessionDiv = document.createElement('div');
+          sessionDiv.innerHTML = `
+            <p><strong>Tutor:</strong> ${session.tutor}</p>
+            <p><strong>Date:</strong> ${session.date}</p>
+            <p><strong>Time:</strong> ${session.time}</p>
+            <button onclick="acceptSession(${index})">Accept</button>
+            <button onclick="declineSession(${index})">Decline</button>
+            <hr>
+          `;
+          sessionList.appendChild(sessionDiv);
+        }
+      });
+    }
+
+    function acceptSession(index) {
+      sessions[index].status = 'accepted';
+      localStorage.setItem('sessions', JSON.stringify(sessions));
+      renderSessions();
+    }
+
+    function declineSession(index) {
+      sessions.splice(index, 1);
+      localStorage.setItem('sessions', JSON.stringify(sessions));
+      renderSessions();
+    }
+
+    window.onload = renderSessions;
+  </script>
+</body>
+</html>

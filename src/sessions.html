@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session Schedule</title>
+    <link rel="stylesheet" href="sdstyle.css" />
+  </head>
+  <body>
+    <header class="first-header">
+      <h1>Your Sessions</h1>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html#tutors">Available Tutors</a></li>
+          <li><a href="index.html#schedule">Schedule a Session</a></li>
+          <li><a href="index.html#resources">Study Resources</a></li>
+        </ul>
+      </nav>
+      <aside class="profile-picture">
+        <a href="profile.html">
+          <img src="images/profile-pic.png" alt="Profile Picture" class="profile-img" />
+        </a>
+      </aside>
+    </header>
+    <main>
+      <section class="sessions container">
+        <header>
+          <h2>Pending Sessions</h2>
+        </header>
+        <section id="session-details"></section>
+            <h2>Session Details</h2>
+            <p><strong>Tutor:</strong> <span id="displayTutor"></span></p>
+            <p><strong>Date:</strong> <span id="displayDate"></span></p>
+            <p><strong>Time:</strong> <span id="displayTime"></span></p>
+          </section>
+        
+          <script>
+            // Retrieve data from localStorage
+            const tutor = localStorage.getItem('tutor');
+            const date = localStorage.getItem('date');
+            const time = localStorage.getItem('time');
+        
+            // Display the data
+            document.getElementById('displayTutor').textContent = tutor.replace('-', ' ').toUpperCase();
+            document.getElementById('displayDate').textContent = date;
+            document.getElementById('displayTime').textContent = time;
+          </script>
+        <article class="session-item">
+          <p><strong>Tutor Name:</strong> Jane Smith</p>
+          <p><strong>Subject:</strong> Physics</p>
+          <p><strong>Date:</strong> 2024-09-20</p>
+          <p><strong>Time:</strong> 10:00 AM</p>
+        </article>
+        <article class="session-item">
+          <p><strong>Tutor Name:</strong> Michael Brown</p>
+          <p><strong>Subject:</strong> English Literature</p>
+          <p><strong>Date:</strong> 2024-09-21</p>
+          <p><strong>Time:</strong> 2:00 PM</p>
+        </article>
+        <!-- Add more pending sessions as needed -->
+      </section>
+
+
+      <section class="sessions container">
+        <header>
+          <h2>Upcoming Sessions</h2>
+        </header>
+        
+        <article class="session-item">
+          <p><strong>Tutor Name:</strong> Alex Turner</p>
+          <p><strong>Subject:</strong> Chemistry</p>
+          <p><strong>Date:</strong> 2024-09-22</p>
+          <p><strong>Time:</strong> 1:00 PM</p>
+        </article>
+        <article class="session-item">
+          <p><strong>Tutor Name:</strong> Sarah Johnson</p>
+          <p><strong>Subject:</strong> Economics</p>
+          <p><strong>Date:</strong> 2024-09-23</p>
+          <p><strong>Time:</strong> 11:00 AM</p>
+        </article>
+        <!-- Add more upcoming sessions as needed -->
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
+    </footer>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
