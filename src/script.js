@@ -32,10 +32,6 @@ if ((email === "test@admin") && (password === "1234")){
     email: email,
     password: password,
   });
-  const response = await authenticationService.RegisterUserWithEmailAndPassword({
-    email: email,
-    password: password,
-  });
 
   if (response !== "error") {
     const user = {
