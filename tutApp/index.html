@@ -1,1 +1,28 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="landing-page">
+        <header>
+            <img src="assets/logo.png" alt="Mentor App Logo" class="logo">
+        </header>
+        <main>
+            <h1>Welcome to Wits Tutoring App</h1>
+            <p>Your journey to knowledge starts here.</p>
+            <p>Discover top tutors, book sessions easily, and achieve your learning goals.</p>
+            <div class="buttons">
+                <button class="button" onclick="navigateTo('main')">Main Menu</button>
+                <button class="button" onclick="navigateTo('tutors')">Tutors</button>
+                <button class="button" onclick="navigateTo('book')">Book a Session</button>
+                <button class="button" onclick="navigateTo('confirmation')">Booking Confirmation</button>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

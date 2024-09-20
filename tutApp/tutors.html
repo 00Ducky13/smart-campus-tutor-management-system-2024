@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutors - Mentor App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="tutors-page">
+        <header>
+            <img src="assets/logo.png" alt="Mentor App Logo" class="logo">
+        </header>
+        <main>
+            <h1>Set Up Your Tutor Profile</h1>
+            <form id="tutorForm">
+                <div class="form-group">
+                    <label for="tutorName">Name:</label>
+                    <input type="text" id="tutorName" name="tutorName" required>
+                </div>
+                <div class="form-group">
+                    <label for="tutorPhoto">Profile Picture:</label>
+                    <input type="file" id="tutorPhoto" name="tutorPhoto" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="tutorDescription">Description:</label>
+                    <textarea id="tutorDescription" name="tutorDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tutorCourses">Courses/Subjects:</label>
+                    <input type="text" id="tutorCourses" name="tutorCourses" required>
+                </div>
+                <div class="form-group">
+                    <label for="tutorAvailability">Availability:</label>
+                    <input type="text" id="tutorAvailability" name="tutorAvailability" class="flatpickr" required>
+                </div>
+                <div class="form-group">
+                    <label for="tutorRating">Rating:</label>
+                    <div class="rating">
+                        <span class="star" data-value="1"></span>
+                        <span class="star" data-value="2"></span>
+                        <span class="star" data-value="3"></span>
+                        <span class="star" data-value="4"></span>
+                        <span class="star" data-value="5"></span>
+                    </div>
+                    <input type="hidden" id="tutorRating" name="tutorRating" required>
+                </div>
+                <button type="submit" class="button">Save Profile</button>
+            </form>
+        </main>
+    </div>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="app.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const tutorForm = document.getElementById('tutorForm');
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('tutorRating');
+            const availabilityInput = document.querySelector('.flatpickr');
+
+            // Initialize Flatpickr
+            if (availabilityInput) {
+                flatpickr(availabilityInput, {
+                    mode: 'multiple',
+                    enableTime: true,
+                    dateFormat: 'Y-m-d H:i',
+                    minDate: "today"
+                });
+            }
+
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    ratingInput.value = value;
+                    stars.forEach(s => s.classList.remove('selected'));
+                    for (let i = 0; i < value; i++) {
+                        stars[i].classList.add('selected');
+                    }
+                });
+
+                star.addEventListener('mouseover', function() {
+                    stars.forEach(s => s.classList.remove('hover'));
+                    for (let i = 0; i <= this.getAttribute('data-value') - 1; i++) {
+                        stars[i].classList.add('hover');
+                    }
+                });
+
+                star.addEventListener('mouseout', function() {
+                    stars.forEach(s => s.classList.remove('hover'));
+                });
+            });
+
+            if (tutorForm) {
+                tutorForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const tutorName = document.getElementById('tutorName').value;
+                    const tutorPhoto = document.getElementById('tutorPhoto').files[0];
+                    const tutorDescription = document.getElementById('tutorDescription').value;
+                    const tutorCourses = document.getElementById('tutorCourses').value;
+                    const tutorAvailability = document.getElementById('tutorAvailability').value;
+                    const tutorRating = document.getElementById('tutorRating').value;
+
+                    if (tutorPhoto) {
+                        const reader = new FileReader();
+                        reader.onloadend = function() {
+                            const photoData = reader.result;
+                            db.collection("tutors").add({
+                                name: tutorName,
+                                photo: photoData,
+                                description: tutorDescription,
+                                courses: tutorCourses,
+                                availability: tutorAvailability,
+                                rating: tutorRating
+                            })
+                            .then(function(docRef) {
+                                alert('Profile saved successfully!');
+                                tutorForm.reset();
+                                stars.forEach(s => s.classList.remove('selected'));
+                            })
+                            .catch(function(error) {
+                                console.error("Error adding document: ", error);
+                            });
+                        };
+                        reader.readAsDataURL(tutorPhoto);
+                    } else {
+                        db.collection("tutors").add({
+                            name: tutorName,
+                            description: tutorDescription,
+                            courses: tutorCourses,
+                            availability: tutorAvailability,
+                            rating: tutorRating
+                        })
+                        .then(function(docRef) {
+                            alert('Profile saved successfully!');
+                            tutorForm.reset();
+                            stars.forEach(s => s.classList.remove('selected'));
+                        })
+                        .catch(function(error) {
+                            console.error("Error adding document: ", error);
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
