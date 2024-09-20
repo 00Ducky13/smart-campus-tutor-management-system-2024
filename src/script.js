@@ -24,7 +24,7 @@ if ((email === "test@admin") && (password === "1234")){
          window.location.href = "tutordashboard.html";
       }
       else{
-          window.location.href = "tutApp/index.html";
+          window.location.href = "studentdashboard.html";
       }
   }
   else {
@@ -62,7 +62,7 @@ async function onSignIn(e) {
          window.location.href = "tutordashboard.html";
       }
       else{
-          window.location.href = "../tutApp/index.html";
+          window.location.href = "studentdashboard.html";
       }
   }
   else {
