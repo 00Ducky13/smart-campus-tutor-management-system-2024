@@ -12,7 +12,8 @@ body, html {
   min-height: 100vh;
 }
 .first-header {
-  background-color: rgb(11, 9, 158);
+  background-color: rgba(0, 31, 63, 0.8);
+
   color: white;
   display: flex;
   align-items: center;
@@ -177,7 +178,9 @@ label[for="role"] {
 
 
 footer{
-  background-color: rgb(11, 9, 158);
+
+  background-color: rgba(0, 31, 63, 0.8);
+
   display: flex;
   justify-content: center;
   align-items: center;
