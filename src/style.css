@@ -12,15 +12,13 @@ body, html {
   min-height: 100vh;
 }
 .first-header {
+  background-color: rgba(0, 31, 63, 0.8);
 
-  background-color: #001f3f;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  position:sticky;
-  z-index: 1000;
 }
 
 .navbar ul {
@@ -108,7 +106,7 @@ label[for="role"] {
 }
 
 .role-selection select option:hover {
-  background-color: #001f3f; /* Change the hover color to orange */
+  background-color: rgba(17, 0, 255, 0.727); /* Change the hover color to orange */
   color: white; /* Set text color to white for better visibility */
 }
 
@@ -180,7 +178,9 @@ label[for="role"] {
 
 
 footer{
-  background-color: rgb(11, 9, 158);
+
+  background-color: rgba(0, 31, 63, 0.8);
+
   display: flex;
   justify-content: center;
   align-items: center;
