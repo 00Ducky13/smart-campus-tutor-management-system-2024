@@ -62,7 +62,7 @@ async function onSignIn(e) {
          window.location.href = "tutordashboard.html";
       }
       else{
-          window.location.href = "studentdashboard.html";
+          window.location.href = "tutApp/index.html";
       }
   }
   else {
