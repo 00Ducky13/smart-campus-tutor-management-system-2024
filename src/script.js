@@ -45,6 +45,7 @@ if ((email === "test@admin") && (password === "1234")){
     const dbResponse = await userRepository.createUser({ user: user });
     alert(dbResponse);
   }
+  }
 }
 
 async function onSignIn(e) {
