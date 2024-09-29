@@ -75,6 +75,23 @@ body, html {
     background-color: #f8f9fa;
     color: #495057;
   }
+
+  #filterWrapper{
+    width: 100%;
+    height: fit-content;
+    padding: 0.5%;
+    border: 1px solid #ddd;
+  }
+  #uploadResourceButton{
+    height: fit-content;
+    font-size: 16px;
+    padding: 0.2%;
+    margin-bottom: 0.1%;
+  }
+  #uploadResourceDialog{
+    height: fit-content;
+    width: fit-content;
+  }
   #resourceSearchBar {
     background-image: url('images/searchIcon2.png'); /* Add a search icon to input */
     background-size:contain;

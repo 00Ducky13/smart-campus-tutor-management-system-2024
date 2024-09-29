@@ -4,6 +4,7 @@ import {
     doc,
     getDoc,
     getDocs,
+    addDoc,
     deleteDoc,
     collection
   } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
@@ -15,10 +16,16 @@ async function getAllTestResources(){
   //const testResList = testResSnapshot.docs.map(doc => doc.data());
   let tempResList = [];
   testResSnapshot.docs.forEach((doc) => {
-    let tempResObj = {};
-    tempResList.push(doc.data());
+    //console.log("In forEach");
+    let tempResObj = doc.data();
+    tempResList.push(tempResObj);
   });
   return tempResList;
 }
 
-export {getAllTestResources}
+async function uploadTestResource(resourceObj){
+    let response = await addDoc(collection(firestore,'test-resources'),resourceObj);
+    return response;
+}
+
+export {getAllTestResources,uploadTestResource}
