@@ -12,13 +12,14 @@ body, html {
   min-height: 100vh;
 }
 .first-header {
-  background-color: rgba(0, 31, 63, 0.8);
-
+  background-color: rgb(0, 59, 92);
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  position:sticky;
+  z-index: 1000;
 }
 
 .navbar ul {
@@ -64,22 +65,22 @@ body, html {
 .logo-container .slogan {
   margin-top: 0;
   margin-bottom: 20px; /* Space between slogan and form */
-  color: orange; /* Slogan color - you can change this */
+  color: rgb(166, 140, 0); /* Slogan color - you can change this */
   font-style: italic;
 }
 
 .header h2 {
   margin: 0 0 20px 0;
   text-align: center;
-  color: orange; /* Heading color */
+  color: rgb(166, 140, 0); /* Heading color */
   background-color: white;
 }
 label[for="signup-role"] {
-  color: rgba(8, 8, 143, 0.826); /* Example: Change the text color */
+  color: rgba(0, 59, 92, 0.826); /* Example: Change the text color */
   font-weight: bold; /* Example: Make the font bold */
 }
 label[for="role"] {
-  color: orange; /* Example: Change the text color */
+  color: rgb(166, 140, 0); /* Example: Change the text color */
   font-weight: bold; /* Example: Make the font bold */
 }
 
@@ -106,7 +107,7 @@ label[for="role"] {
 }
 
 .role-selection select option:hover {
-  background-color: rgba(17, 0, 255, 0.727); /* Change the hover color to orange */
+  background-color: rgba(0, 59, 92, 0.727); /* Change the hover color to orange */
   color: white; /* Set text color to white for better visibility */
 }
 
@@ -118,7 +119,7 @@ label[for="role"] {
 .action button {
   width: 100%;
   padding: 10px;
-  background-color: orange; /* Green */
+  background-color: rgb(166, 140, 0); /* Green */
   border: none;
   border-radius: 4px;
   color: white;
@@ -127,7 +128,7 @@ label[for="role"] {
 }
 
 .action button:hover {
-  background-color: rgb(247, 109, 58); /* Darker orange on hover */
+  background-color: rgb(83, 70, 0); /* Darker orange on hover */
 }
 
 .logo-container {
@@ -150,13 +151,13 @@ label[for="role"] {
 }
 
 .switch-form a {
-  color: orangered; /* Link color */
+  color: rgb(166, 140, 0); /* Link color */
   text-decoration: none;
   transition: color 0.2s; /* Smooth transition for hover effect */
 }
 
 .switch-form a:hover {
-  color: rgb(247, 109, 58); /* Darker blue on hover */
+  color: rgb(83, 70, 0); /* Darker blue on hover */
   text-decoration: underline;
 }
 
@@ -165,22 +166,20 @@ label[for="role"] {
 }
 
 .forgot-password a {
-  color: rgb(253, 69, 2);
+  color: rgb(166, 140, 0);
   text-decoration: none;
   font-size: 0.9rem; /* Slightly smaller font size */
   margin-left: 55%;
 }
 
 .forgot-password a:hover {
-  color: rgb(247, 109, 58);
+  color: rgb(83, 70, 0);
   text-decoration: underline; /* Add underline on hover to emphasize interactivity */
 }
 
 
 footer{
-
-  background-color: rgba(0, 31, 63, 0.8);
-
+  background-color: rgb(0, 59, 92);
   display: flex;
   justify-content: center;
   align-items: center;

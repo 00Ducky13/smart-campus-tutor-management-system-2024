@@ -3,7 +3,7 @@ import {
   doc,
   getDoc,
   deleteDoc,
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 export class UserRepository {
   constructor({ database }) {

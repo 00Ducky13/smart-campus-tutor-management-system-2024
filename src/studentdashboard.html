@@ -1,267 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Dashboard</title>
-  <link rel="stylesheet" href="sdstyle.css">
-</head>
-<header class="first-header">
-  <h1>Welcome, Student</h1>
-  <nav class="navbar">
-    <ul>
-      <li><a href="#tutors">Available Tutors</a></li>
-      <li><a href="#schedule">Schedule a Session</a></li>
-      <li><a href="#resources">Study Resources</a></li>
-      <li><a href="sessions.html">Sessions</a></li>
-    </ul>
-  </nav>
-  <aside class="profile-picture">
-    <a href="profile.html">
-      <img src="images/profile-pic.png" alt="Profile Picture" class="profile-img">
-    </a>
-  </aside>
-</header>
-<body>
-  <main>
-    <!-- Available Tutors Section -->
-    <section id="tutors" class="container">
-      <header>
-        <h2>Available Tutors</h2>
-      </header>
-      
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor1.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> Cindy Jaca</p>
-            <p><strong>Subject:</strong> Mathematics</p>
-            <p><strong>Description:</strong> I am Cindy, a highly experienced math tutor with over 10 years of teaching experience. I specialize in algebra and calculus, and I love helping students understand and enjoy math.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor1" name="rating-tutor1" value="5"><label for="star5-tutor1">★</label>
-          <input type="radio" id="star4-tutor1" name="rating-tutor1" value="4"><label for="star4-tutor1">★</label>
-          <input type="radio" id="star3-tutor1" name="rating-tutor1" value="3"><label for="star3-tutor1">★</label>
-          <input type="radio" id="star2-tutor1" name="rating-tutor1" value="2"><label for="star2-tutor1">★</label>
-          <input type="radio" id="star1-tutor1" name="rating-tutor1" value="1"><label for="star1-tutor1">★</label>
-        </div>
-      </article>
-
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor2.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> Jane Smith</p>
-            <p><strong>Subject:</strong> Physics</p>
-            <p><strong>Description:</strong> My name is Jane, and I am a passionate physics tutor. I enjoy making complex concepts easy to understand, and I have a background in theoretical physics.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor2" name="rating-tutor2" value="5"><label for="star5-tutor2">★</label>
-          <input type="radio" id="star4-tutor2" name="rating-tutor2" value="4"><label for="star4-tutor2">★</label>
-          <input type="radio" id="star3-tutor2" name="rating-tutor2" value="3"><label for="star3-tutor2">★</label>
-          <input type="radio" id="star2-tutor2" name="rating-tutor2" value="2"><label for="star2-tutor2">★</label>
-          <input type="radio" id="star1-tutor2" name="rating-tutor2" value="1"><label for="star1-tutor2">★</label>
-        </div>
-      </article>
-
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor3.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> Alex Turner</p>
-            <p><strong>Subject:</strong> Chemistry</p>
-            <p><strong>Description:</strong> I'm Alex, a dedicated chemistry tutor with a knack for making complex topics accessible and engaging.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor3" name="rating-tutor3" value="5"><label for="star5-tutor3">★</label>
-          <input type="radio" id="star4-tutor3" name="rating-tutor3" value="4"><label for="star4-tutor3">★</label>
-          <input type="radio" id="star3-tutor3" name="rating-tutor3" value="3"><label for="star3-tutor3">★</label>
-          <input type="radio" id="star2-tutor3" name="rating-tutor3" value="2"><label for="star2-tutor3">★</label>
-          <input type="radio" id="star1-tutor3" name="rating-tutor3" value="1"><label for="star1-tutor3">★</label>
-        </div>
-      </article>
-
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor4.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> Emily Davis</p>
-            <p><strong>Subject:</strong> Biology</p>
-            <p><strong>Description:</strong> I'm Emily, and I love teaching biology. I focus on helping students grasp key concepts through interactive lessons.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor4" name="rating-tutor4" value="5"><label for="star5-tutor4">★</label>
-          <input type="radio" id="star4-tutor4" name="rating-tutor4" value="4"><label for="star4-tutor4">★</label>
-          <input type="radio" id="star3-tutor4" name="rating-tutor4" value="3"><label for="star3-tutor4">★</label>
-          <input type="radio" id="star2-tutor4" name="rating-tutor4" value="2"><label for="star2-tutor4">★</label>
-          <input type="radio" id="star1-tutor4" name="rating-tutor4" value="1"><label for="star1-tutor4">★</label>
-        </div>
-      </article>
-
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor5.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> Michael Brown</p>
-            <p><strong>Subject:</strong> Computer Science</p>
-            <p><strong>Description:</strong> I'm Michael, a computer science tutor passionate about coding and programming languages.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor5" name="rating-tutor5" value="5"><label for="star5-tutor5">★</label>
-          <input type="radio" id="star4-tutor5" name="rating-tutor5" value="4"><label for="star4-tutor5">★</label>
-          <input type="radio" id="star3-tutor5" name="rating-tutor5" value="3"><label for="star3-tutor5">★</label>
-          <input type="radio" id="star2-tutor5" name="rating-tutor5" value="2"><label for="star2-tutor5">★</label>
-          <input type="radio" id="star1-tutor5" name="rating-tutor5" value="1"><label for="star1-tutor5">★</label>
-        </div>
-      </article>
-
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor6.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> Sarah Johnson</p>
-            <p><strong>Subject:</strong> History</p>
-            <p><strong>Description:</strong> I'm Sarah, a history tutor who loves making past events relatable and interesting.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor6" name="rating-tutor6" value="5"><label for="star5-tutor6">★</label>
-          <input type="radio" id="star4-tutor6" name="rating-tutor6" value="4"><label for="star4-tutor6">★</label>
-          <input type="radio" id="star3-tutor6" name="rating-tutor6" value="3"><label for="star3-tutor6">★</label>
-          <input type="radio" id="star2-tutor6" name="rating-tutor6" value="2"><label for="star2-tutor6">★</label>
-          <input type="radio" id="star1-tutor6" name="rating-tutor6" value="1"><label for="star1-tutor6">★</label>
-        </div>
-      </article>
-
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor7.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> David Green</p>
-            <p><strong>Subject:</strong> English</p>
-            <p><strong>Description:</strong> I'm David, an English tutor focused on reading comprehension and writing skills.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor7" name="rating-tutor7" value="5"><label for="star5-tutor7">★</label>
-          <input type="radio" id="star4-tutor7" name="rating-tutor7" value="4"><label for="star4-tutor7">★</label>
-          <input type="radio" id="star3-tutor7" name="rating-tutor7" value="3"><label for="star3-tutor7">★</label>
-          <input type="radio" id="star2-tutor7" name="rating-tutor7" value="2"><label for="star2-tutor7">★</label>
-          <input type="radio" id="star1-tutor7" name="rating-tutor7" value="1"><label for="star1-tutor7">★</label>
-        </div>
-      </article>
-
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor8.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> Lisa White</p>
-            <p><strong>Subject:</strong> Art</p>
-            <p><strong>Description:</strong> I'm Lisa, an art tutor who loves exploring creativity and artistic expression with my students.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor8" name="rating-tutor8" value="5"><label for="star5-tutor8">★</label>
-          <input type="radio" id="star4-tutor8" name="rating-tutor8" value="4"><label for="star4-tutor8">★</label>
-          <input type="radio" id="star3-tutor8" name="rating-tutor8" value="3"><label for="star3-tutor8">★</label>
-          <input type="radio" id="star2-tutor8" name="rating-tutor8" value="2"><label for="star2-tutor8">★</label>
-          <input type="radio" id="star1-tutor8" name="rating-tutor8" value="1"><label for="star1-tutor8">★</label>
-        </div>
-      </article>
-
-      <article class="tutor-item">
-        <figure>
-          <img src="images/tutor9.png" alt="Tutor Image">
-          <figcaption>
-            <p><strong>Tutor Name:</strong> Richard Black</p>
-            <p><strong>Subject:</strong> Geography</p>
-            <p><strong>Description:</strong> I'm Richard, a geography tutor with a passion for exploring the world and helping students understand it.</p>
-          </figcaption>
-        </figure>
-        <div class="star-rating">
-          <input type="radio" id="star5-tutor9" name="rating-tutor9" value="5"><label for="star5-tutor9">★</label>
-          <input type="radio" id="star4-tutor9" name="rating-tutor9" value="4"><label for="star4-tutor9">★</label>
-          <input type="radio" id="star3-tutor9" name="rating-tutor9" value="3"><label for="star3-tutor9">★</label>
-          <input type="radio" id="star2-tutor9" name="rating-tutor9" value="2"><label for="star2-tutor9">★</label>
-          <input type="radio" id="star1-tutor9" name="rating-tutor9" value="1"><label for="star1-tutor9">★</label>
-        </div>
-      </article>
-
-    </section>
-
-    <!-- Schedule a Session Section -->
-    <section id="schedule" class="container">
-      <header>
-        <h2>Schedule a Session</h2>
-      </header>
-      <form id="schedule-form">
-        <label for="tutor">Select Tutor:</label>
-        <select id="tutor" name="tutor" required>
-          <option value="" disabled selected>Select a tutor</option>
-          <option value="cindy-jaca">Cindy Jaca</option>
-          <option value="jane-smith">Jane Smith</option>
-          <option value="alex-turner">Alex Turner</option>
-          <option value="emily-davis">Emily Davis</option>
-          <option value="michael-brown">Michael Brown</option>
-          <option value="sarah-johnson">Sarah Johnson</option>
-          <option value="david-green">David Green</option>
-          <option value="lisa-white">Lisa White</option>
-          <option value="richard-black">Richard Black</option>
-        </select>
-        <label for="date">Select Date:</label>
-        <input type="date" id="date" name="date" required>
-        <label for="time">Select Time:</label>
-        <input type="time" id="time" name="time" required>
-        <button type="submit">Schedule</button>
-      </form>
-    </section>
-
-    <script>
-      document.getElementById('schedule-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const tutor = document.getElementById('tutor').value;
-        const date = document.getElementById('date').value;
-        const time = document.getElementById('time').value;
-
-        // Save data to localStorage
-        localStorage.setItem('tutor', tutor);
-        localStorage.setItem('date', date);
-        localStorage.setItem('time', time);
-
-        // Redirect to sessions.html
-        window.location.href = 'sessions.html';
-      });
-    </script>
-
-    <!-- Study Resources Section -->
-    <section id="resources" class="container">
-      <header>
-        <h2>Study Resources (via Google Drive)</h2>
-      </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="sdstyle.css" />
+  </head>
+  <header class="first-header">
+    <h1>Welcome, Student</h1>
+    <nav class="navbar">
       <ul>
-        <li><a href="math-resources.html">Computer Science (First Year)</a></li>
-        <li><a href="psychology-resources.html">Psychology (Third Year)</a></li>
-        <li><a href="civil-engineering-resources.html">Civil Engineering (Second Year)</a></li>
-        <li><a href="biology-resources.html">Computer Science (Second Year)</a></li>
-        <li><a href="chemistry-resources.html">Actuarial Sciences (First Year)</a></li>
-        <li><a href="economics-resources.html">Accounting Science (Third Year)</a></li>
-        <li><a href="history-resources.html">Accounting Science (Second Year)</a></li>
-        <li><a href="english-resources.html">Construction Studies (First Year)</a></li>
-        <li><a href="art-resources.html">Art (First Year)</a></li>
-        <li><a href="physics-resources.html">Physics (Second Year)</a></li>
+        <li><a href="#tutors">Available Tutors</a></li>
+        <li><a href="#schedule">Schedule a Session</a></li>
+        <li><a href="#resources">Study Resources</a></li>
       </ul>
-    </section>
-  </main>
+    </nav>
+    <aside class="profile-picture">
+      <a href="profile.html">
+        <img src="images/profile-pic.png" alt="Profile Picture" class="profile-img" />
+      </a>
+    </aside>
+  </header>
+  <body>
+    <main>
+      <!-- Available Tutors Section -->
+      <section id="tutors" class="container">
+        <header>
+          <h2>Available Tutors</h2>
+        </header>
+        
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor1.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Lucky Nkosi</p>
+              <p><strong>Subject:</strong> Mathematics</p>
+            </figcaption>
+          </figure>
+        </article>
 
-  <footer>
-    <p>&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
-  </footer>
-  <script type="module" src="script.js"></script>
-</body>
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor2.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Jane Smith</p>
+              <p><strong>Subject:</strong> Physics</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <!-- Adding 7 more tutors -->
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor3.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Alex Turner</p>
+              <p><strong>Subject:</strong> Chemistry</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor4.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Emily Davis</p>
+              <p><strong>Subject:</strong> Biology</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor5.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Michael Brown</p>
+              <p><strong>Subject:</strong> English Literature</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor6.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Sarah Johnson</p>
+              <p><strong>Subject:</strong> Economics</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor7.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> David Green</p>
+              <p><strong>Subject:</strong> Computer Science</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor8.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Lisa White</p>
+              <p><strong>Subject:</strong> History</p>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="tutor-item">
+          <figure>
+            <img src="images/tutor9.png" alt="Tutor Image" />
+            <figcaption>
+              <p><strong>Tutor Name:</strong> Richard Black</p>
+              <p><strong>Subject:</strong> Art</p>
+            </figcaption>
+          </figure>
+        </article>
+
+      </section>
+
+      <!-- Schedule Session Section -->
+      <section id="schedule" class="schedule">
+        <header>
+          <h2>Schedule a Session</h2>
+        </header>
+        <form id="schedule-form">
+          <label for="tutor">Select Tutor:</label>
+          <select id="tutor" name="tutor">
+            <option value="john-doe">John Doe</option>
+            <option value="jane-smith">Jane Smith</option>
+            <option value="alex-turner">Alex Turner</option>
+            <option value="emily-davis">Emily Davis</option>
+            <option value="michael-brown">Michael Brown</option>
+            <option value="sarah-johnson">Sarah Johnson</option>
+            <option value="david-green">David Green</option>
+            <option value="lisa-white">Lisa White</option>
+            <option value="richard-black">Richard Black</option>
+          </select>
+          <label for="date">Select Date:</label>
+          <input type="date" id="date" name="date" required />
+          <label for="time">Select Time:</label>
+          <input type="time" id="time" name="time" required />
+          <button type="submit">Schedule</button>
+        </form>
+      </section>
+
+      <!-- Study Resources Section -->
+      <section id="resources" class="container">
+        <header>
+          <h2>Study Resources (via Google Drive)</h2>
+        </header>
+        <ul>
+          <li><a href="math-resources.html">Computer Science (First Year)</a></li>
+          <li><a href="psychology-resources.html">Psychology (Third Year)</a></li>
+          <li><a href="civil-engineering-resources.html">Civil Engineering (Second Year)</a></li>
+          <li><a href="biology-resources.html">Computer Science (Second Year)</a></li>
+          <li><a href="chemistry-resources.html">Actuarial Sciences (First Year)</a></li>
+          <li><a href="economics-resources.html">Accounting Science (Third Year)</a></li>
+          <li><a href="history-resources.html">Accounting Science (Second Year)</a></li>
+          <li><a href="english-resources.html">Construction Studies (First Year)</a></li>
+          <li><a href="art-resources.html">Art (First Year)</a></li>
+          <li><a href="physics-resources.html">Physics (Second Year)</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
+    </footer>
+    <script type="module" src="script.js"></script>
+  </body>
 </html>

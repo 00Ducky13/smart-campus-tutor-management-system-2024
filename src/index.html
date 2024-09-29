@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <header class="first-header">
-    <h1>Welcome to wits smart campus Website!</h1>
+    <h1>Welcome to Wits Campus Tutoring</h1>
     <nav class="navbar">
       <ul>
         <li><a href="now.html">About Us</a></li>
@@ -21,37 +21,39 @@
       <aside class="container">
         <aside class="form-container">
           <mark class="logo-container">
-            <img src="witsLogo.png" alt="wits Logo" />
+            <img src="images/witsLogoRing.png" alt="wits Logo" />
             <p class="slogan">
-              Conquer the edge!!!
+              Conquer the edge!
             </p>
           </mark>
           <form id="login-form">
             <header class="header">
-              <h2> Sign In</h2>
+              <h2> Log In</h2>
             </header>
 
             <aside class="role-selection">
               <label for="role">Sign In as:</label>
               <select id="role" name="role">
-                <option value="student">student</option>
-                <option value="tutor">tutor</option>
+                <option value="student">Student</option>
+                <option value="tutor">Tutor</option>
     
               </select>
             </aside>
             <mark class="input-field">
-              <input type="email" placeholder="Email" required name="email" />
+              <input id="loginEmail" type="email" placeholder="Email" required name="email" />
             </mark>
             <mark class="input-field">
               <input
+                id="loginPassword"
                 type="password"
                 placeholder="Password"
                 required
                 name="password"
+                
               />
             </mark>
             <mark class="action">
-              <button type="submit">Sign In</button>
+              <button id="btnLogin" type="submit">Log In</button>
             </mark>
 
             <mark class="switch-form">
@@ -111,6 +113,6 @@
     <footer>
       <p id="foot">&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
     </footer>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="indexScripts.js"></script>
   </body>
 </html>
