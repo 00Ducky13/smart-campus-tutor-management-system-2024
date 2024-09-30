@@ -92,6 +92,10 @@ body, html {
     height: fit-content;
     width: fit-content;
   }
+  #resourceUploadDlgInfo{
+    height: fit-content;
+    width: fit-content;
+  }
   #resourceSearchBar {
     background-image: url('images/searchIcon2.png'); /* Add a search icon to input */
     background-size:contain;

@@ -148,12 +148,24 @@ document.getElementById("confirmUploadBtn").addEventListener("click",function(ev
                 fullFilterList = [].concat(master_resource_list);
                 removeResourceCards();
                 drawResourceCards(master_resource_list);});
-            alert("Upload Successful");
-            document.getElementById("uploadResourceDialog").close();
+            document.getElementById("resourceUploadDlgText").innerText = "Upload Successful";
+            console.log("Upload Successful");
+            document.getElementById("uploadName").value = "";
+        document.getElementById("uploadSubject").value = "";
+        document.getElementById("uploadCourse").value = "";
+         document.getElementById("uploadUploader").value = "";
+         document.getElementById("uploadLink").value = "";
+            document.getElementById("resourceUploadDlgInfo").showModal();
+            //document.getElementById("uploadResourceDialog").close();
         }
         else{
-            alert("Upload Unsuccessful");
+            document.getElementById("resourceUploadDlgText").innerText = "Upload Unsuccessful";
+            document.getElementById("resourceUploadDlgInfo").showModal();
         }
         
     });
+});
+
+document.getElementById("resourceUploadDlgOk").addEventListener("click",function(event) {
+    document.getElementById("resourceUploadDlgInfo").close();
 });
