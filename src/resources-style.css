@@ -5,6 +5,13 @@ body, html {
     background-color: white; /* Set to white as requested */
   }
 
+.searchWrapper{
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: 100%;
+}
+
 .first-header {
     position: sticky;
     top: 0;
@@ -68,7 +75,44 @@ body, html {
     background-color: #f8f9fa;
     color: #495057;
   }
-  
+
+  #filterWrapper{
+    width: 100%;
+    height: fit-content;
+    padding: 0.5%;
+    border: 1px solid #ddd;
+  }
+  #uploadResourceButton{
+    height: fit-content;
+    font-size: 16px;
+    padding: 0.2%;
+    margin-bottom: 0.1%;
+  }
+  #uploadResourceDialog{
+    height: fit-content;
+    width: fit-content;
+  }
+  #resourceSearchBar {
+    background-image: url('images/searchIcon2.png'); /* Add a search icon to input */
+    background-size:contain;
+    background-position: 0px 0px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+  }
+
+#resourceFilterButton{
+  background-image: url('images/filterIcon2.png');
+  background-size:contain;
+  background-position: center; /* Position the search icon */
+  background-repeat: no-repeat;
+  width: 10%;
+  margin-bottom: 12px;
+}
+
   #schedule-form label {
     display: block;
     margin-bottom: 5px;
@@ -116,19 +160,26 @@ body, html {
   }
 
   /* Tutors Section - Grid layout */
-#tutors {
+#resourceGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Three columns */
     gap: 20px; /* Space between items */
     margin: 20px;
   }
-  
-  .tutor-item {
+#resources{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+}  
+  .resource-item {
     text-align: center;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #f8f9fa;
+    color: inherit;
+     text-decoration: inherit;
   }
   
   .tutor-item img {
@@ -138,11 +189,13 @@ body, html {
     margin-bottom: 10px;
   }
   
-  .tutor-item figcaption {
+  .resource-item figcaption {
     font-size: 14px;
     color: #333;
   }
-  
+  .resource-item:hover{
+    background-color: #97a6b5;  
+  }
   /* Responsive Design - Adjust grid for smaller screens */
   @media (max-width: 768px) {
     #tutors {

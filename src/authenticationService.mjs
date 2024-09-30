@@ -1,7 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
 export class AuthenticationService {
   constructor({ firebaseAuth }) {
