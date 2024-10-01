@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resources</title>
+    <link rel="stylesheet" href="resources-style.css" />
+  </head>
+  <header class="first-header">
+    <h1>Resources</h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="studentdashboard.html">Dashboard</a></li>
+        <li><a href="#schedule">Schedule a Session</a></li>
+        <li><a href="#resources">Study Resources</a></li>
+      </ul>
+    </nav>
+    <aside class="profile-picture">
+      <a href="profile.html">
+        <img src="images/profile-pic.png" alt="Profile Picture" class="profile-img" />
+      </a>
+    </aside>
+  </header>
+  <body>
+    <main>
+      <dialog id="resourceUploadDlgInfo">
+        <p id="resourceUploadDlgText">Sample Text</p>
+        <button id="resourceUploadDlgOk">OK</button>
+      </dialog>
+      <dialog id="uploadResourceDialog">
+        <p>Upload A Resource</p>
+        <section>
+          <p>Name:</p>
+          <input type="text" id="uploadName" placeholder="Resource Name">
+        </section>
+        <section>
+          <p>Subject:</p>
+          <input type="text" id="uploadSubject" placeholder="Resource Subject">
+        </section>
+        <section>
+          <p>Course:</p>
+          <input type="text" id="uploadCourse" placeholder="Resource Course Code">
+        </section>
+        <section>
+          <p>Uploader:</p>
+          <input type="text" id="uploadUploader" placeholder="Resource Uploader">
+        </section>
+        <section>
+          <p>Link:</p>
+          <input type="text" id="uploadLink" placeholder="Resource Link">
+        </section>
+        <button id="cancelUploadBtn">Cancel</button>
+        <button id="confirmUploadBtn">Upload</button>
+      </dialog>
+      <section id="resources" class="container">
+        
+        <header>
+          <h2>Available Resources</h2>
+        </header>
+        <button id="uploadResourceButton">Upload</button>
+        <header class="searchWrapper">
+            <input type="text" id="resourceSearchBar" placeholder="Search...">
+            <button type="button" id="resourceFilterButton"></button>
+        </header>
+        <header id="filterWrapper">
+          <h3>Filter</h3>
+          <section>
+            <p>Subject:</p>
+            <input type="text" id="filterSubject" placeholder="Filter Subject">
+          </section>
+          <section>
+            <p>Course:</p>
+            <input type="text" id="filterCourse" placeholder="Filter Course">
+          </section>
+          <section>
+            <p>Uploader:</p>
+            <input type="text" id="filterUploader" placeholder="Filter Uploader">
+          </section>
+          <section id="filterButtonsWrapper">
+            <button id="clearFilter">
+              Clear Filters
+            </button>
+            <button id="applyFilter">
+              Apply Filters
+            </button>
+          </section>
+        </header>
+        <article id="resourceGrid">
+        </article>
+      </section>
+
+
+    <footer>
+      <p>&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
+    </footer>
+    <script type="module" src="resources-scripts.js"></script>
+  </body>
+</html>
