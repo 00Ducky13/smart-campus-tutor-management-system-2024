@@ -1,4 +1,4 @@
-import { getAllTestResources,uploadTestResource } from "./api/resource-api.js";
+import { getAllTestResources,uploadTestResource } from "./resource-api.js";
 
 // Initialize Firebase
 
