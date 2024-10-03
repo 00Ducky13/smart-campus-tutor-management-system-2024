@@ -1,7 +1,7 @@
 //import { AuthenticationService } from "./authenticationService.mjs";
 //import { UserRepository } from "./userRepository.mjs";
 //import { firestore, authentication } from "./firebase.mjs";
-import { registerUser,signInUser } from "./api/user-api.js";
+import { registerUser,signInUser } from "./user-api.js";
 
 
 async function onSignUp(e) {
