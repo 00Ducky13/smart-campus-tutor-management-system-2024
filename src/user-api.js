@@ -8,6 +8,8 @@ import {
 import {authentication,firestore} from "../firebase/firebase.js";
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 
+let currentUser = null;
+
 async function registerUser(email, password, username, role){
     let inHouseErrorCode = 0
     if (email.indexOf("wits.ac.za") === -1){
@@ -15,11 +17,13 @@ async function registerUser(email, password, username, role){
     }
     else{
     await createUserWithEmailAndPassword(authentication, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       // Signed up 
       const user = userCredential.user;
       // ...
-      const userRef = setDoc(doc(firestore, "test-users", user.uid), {
+      currentUser = user;
+      sessionStorage.setItem("currentUser",user.uid)
+      const userRef = await setDoc(doc(firestore, "test-users", user.uid), {
         role: role,
         username: username
       },{merge: true});
@@ -55,6 +59,8 @@ async function signInUser(email, password, role){
     await signInWithEmailAndPassword(authentication, email, password)
     .then(async (userCredential) => {
         const user = userCredential.user;
+        currentUser = user;
+        sessionStorage.setItem("currentUser",user.uid)
         const docRef = doc(firestore, "test-users", user.uid);
         await getDoc(docRef).then(docSnap => {
             if (docSnap.data().role !== role){
@@ -71,4 +77,7 @@ async function signInUser(email, password, role){
     return inHouseErrorCode
 }
 
-export {registerUser,signInUser}
+function getCurrentUser(){
+  return currentUser;
+}
+export {registerUser,signInUser,getCurrentUser}
