@@ -1,4 +1,4 @@
-import { getCurrentUser } from "./api/user-api.js";
+import { getCurrentUser } from "./user-api.js";
 import {getTutorFromID,updateUserWithID} from "./tutorapi.js"
 import {authentication,firestore} from "./firebase/firebase.js";
 import {
