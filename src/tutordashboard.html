@@ -8,7 +8,7 @@
 </head>
 <body>
   <header class="header">
-    <h1>Welcome, Tutor</h1>
+    <h1 id="tutorDashHeader"></h1>
     <nav class="navbar">
       <ul>
         <li><a href="#profile">Manage Profile</a></li>
@@ -18,7 +18,7 @@
     </nav>
     <aside class="profile-picture">
       <a href="profile.html">
-        <img src="images/tutor-profile-pic.png" alt="Profile Picture" class="profile-img" />
+        <img id="tutorProfilePic" src="images/userIcon.png" alt="Profile Picture" class="profile-img" />
       </a>
     </aside>
   </header>
@@ -39,6 +39,12 @@
   <button type="button" id="add-subject">Add</button>
 </div>
 <ul id="subjects"></ul>
+<label for="course">Courses to Tutor:</label>
+<div id="course-list">
+  <input type="text" id="course-input" placeholder="Add a course..." />
+  <button type="button" id="add-course">Add</button>
+</div>
+<ul id="courses"></ul>
 
 
         <label for="bio">Short Bio:</label>
@@ -106,30 +112,6 @@
     <p>&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
   </footer>
   <script type="module" src="tutordashscript.js"></script>
-
-  <!-- Firebase App (the core Firebase SDK) -->
-<!-- Firebase App (the core Firebase SDK) -->
-<script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js"></script>
-
-<!-- Firebase configuration -->
-<script>
-  const firebaseConfig = {
-  apiKey: "AIzaSyDHTkeo6lS8oYdvJvb0aE50_6iDw7EUOgc",
-  authDomain: "wits-campus-tutoring.firebaseapp.com",
-  projectId: "wits-campus-tutoring",
-  storageBucket: "wits-campus-tutoring.appspot.com",
-  messagingSenderId: "280280197401",
-  appId: "1:280280197401:web:337c1bd9d47adecb39bd88",
-  measurementId: "G-BFHGS9W19B"
-};
-
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const storage = firebase.storage();
-</script>
 
 
 </body>
