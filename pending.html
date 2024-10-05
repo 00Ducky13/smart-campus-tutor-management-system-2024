@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pending Sessions</title>
+  <link rel="stylesheet" href="tdstyle.css" />
+  <style>
+    .pending-session {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pending-session button {
+      margin-left: 8px;
+    }
+    .confirmed-session {
+      border: 1px solid #28a745;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background-color: #d4edda;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+    .calendar div {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    .calendar .booked {
+      background-color: #ffc107;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .calendar-header div {
+      flex: 1;
+      text-align: center;
+    }
+    .calendar-header .prev, .calendar-header .next {
+      cursor: pointer;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>Pending Sessions</h1>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html#profile">Manage Profile</a></li>
+        <li><a href="index.html#availability">Set Availability</a></li>
+        <li><a href="index.html#sessions">Upcoming Sessions</a></li>
+        <li><a href="pending.html">Pending Sessions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container">
+      <header>
+        <h2>Review Pending Sessions</h2>
+      </header>
+      <div class="pending-session">
+        <div>
+          <h3>Charlie Davis</h3>
+          <p>Subject: Chemistry</p>
+        </div>
+        <div>
+          <button onclick="handleSession('accept', this)">Accept</button>
+          <button onclick="handleSession('decline', this)">Decline</button>
+        </div>
+      </div>
+      <div class="pending-session">
+        <div>
+          <h3>Dana Lee</h3>
+          <p>Subject: Biology</p>
+        </div>
+        <div>
+          <button onclick="handleSession('accept', this)">Accept</button>
+          <button onclick="handleSession('decline', this)">Decline</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming Sessions Section -->
+    <section class="container">
+      <header>
+        <h2>Upcoming Sessions</h2>
+      </header>
+      <div id="confirmed-sessions">
+        <h3>Confirmed Sessions</h3>
+      </div>
+      <div id="calendar" class="calendar"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy;2024 Wits Smart Campus Website. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    let currentDate = new Date();
+
+    function handleSession(action, button) {
+      const sessionElement = button.closest('.pending-session');
+      if (action === 'accept') {
+        const sessionInfo = sessionElement.querySelector('div:first-child').innerHTML;
+        const confirmedSessions = localStorage.getItem('confirmedSessions') ? JSON.parse(localStorage.getItem('confirmedSessions')) : [];
+        confirmedSessions.push(sessionInfo);
+        localStorage.setItem('confirmedSessions', JSON.stringify(confirmedSessions));
+      }
+      sessionElement.remove();
+      updateCalendar();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const confirmedSessions = localStorage.getItem('confirmedSessions') ? JSON.parse(localStorage.getItem('confirmedSessions')) : [];
+      const confirmedSessionsContainer = document.getElementById('confirmed-sessions');
+      if (confirmedSessionsContainer) {
+        confirmedSessions.forEach(session => {
+          const sessionCard = document.createElement('div');
+          sessionCard.classList.add('confirmed-session');
+          sessionCard.innerHTML = session;
+          confirmedSessionsContainer.appendChild(sessionCard);
+        });
+      }
+      updateCalendar();
+    });
+
+    function updateCalendar() {
+      const confirmedSessions = localStorage.getItem('confirmedSessions') ? JSON.parse(localStorage.getItem('confirmedSessions')) : [];
+      const calendar = document.getElementById('calendar');
+      calendar.innerHTML = '';
+
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+      // Create calendar header
+      const calendarHeader = document.createElement('div');
+      calendarHeader.classList.add('calendar-header');
+      const prevButton = document.createElement('div');
+      prevButton.classList.add('prev');
+      prevButton.textContent = '<';
+      prevButton.onclick = () => { changeMonth(-1); };
+      const nextButton = document.createElement('div');
+      nextButton.classList.add('next');
+      nextButton.textContent = '>';
+      nextButton.onclick = () => { changeMonth(1); };
+      const monthYear = document.createElement('div');
+      monthYear.textContent = `${monthNames[month]} ${year}`;
+      calendarHeader.appendChild(prevButton);
+      calendarHeader.appendChild(monthYear);
+      calendarHeader.appendChild(nextButton);
+      calendar.appendChild(calendarHeader);
+
+      // Create day names row
+      dayNames.forEach(day => {
+        const dayName = document.createElement('div');
+        dayName.textContent = day;
+        calendar.appendChild(dayName);
+      });
+
+      // Create blank cells for days before the first of the month
+      for (let i = 0; i < firstDay; i++) {
+        const blankCell = document.createElement('div');
+        calendar.appendChild(blankCell);
+      }
+
+      // Create cells for each day of the month
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayCell = document.createElement('div');
+        dayCell.textContent = day;
+        const sessionDates = confirmedSessions.map(session => {
+          const dateMatch = session.match(/Date: (\d{4}-\d{2}-\d{2})/);
+          return dateMatch ? new Date(dateMatch[1]) : null;
+        }).filter(date => date);
+
+        if (sessionDates.some(date => date.getDate() === day && date.getMonth() === month && date.getFullYear() === year)) {
+          dayCell.classList.add('booked');
+        }
+        calendar.appendChild(dayCell);
+      }
+    }
+
+    function changeMonth(direction) {
+      currentDate.setMonth(currentDate.getMonth() + direction);
+      updateCalendar();
+    }
+  </script>
+</body>
+</html>
