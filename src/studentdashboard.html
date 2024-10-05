@@ -220,24 +220,95 @@
         <button type="submit">Schedule</button>
       </form>
     </section>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+      // Load the Google API client
+      function loadClient() {
+        gapi.load('client:auth2', initClient);
+      }
+    
+      // Initialize the Google API client
+      function initClient() {
+        gapi.client.init({
+          apiKey: 'AIzaSyDHTkeo6lS8oYdvJvb0aE50_6iDw7EUOgc',  // Use your API key here
+          clientId: '280280197401-imvqlfsjrgqf3sqmp2l4hc63uosf8l97.apps.googleusercontent.com',  // Use your client ID here
+          discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
+          scope: 'https://www.googleapis.com/auth/calendar.events'
+        }).then(function () {
+          // Listen for sign-in state changes
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+          // Handle initial sign-in state
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        });
+      }
+    
+      // Sign-in state changes
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          console.log('Signed in');
+        } else {
+          console.log('Not signed in');
+        }
+      }
+    
+      // Sign in the user upon button click
+      function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+    
+      // Sign out the user upon button click
+      function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+    </script>
+    
+    <!-- Sign in and sign out buttons -->
+    <button onclick="handleAuthClick()">Sign in with Google</button>
+    <button onclick="handleSignoutClick()">Sign out</button>
+    
+    <script async defer src="https://apis.google.com/js/api.js" onload="loadClient()"></script>
 
+    
     <script>
       document.getElementById('schedule-form').addEventListener('submit', function(event) {
         event.preventDefault();
-
+    
         const tutor = document.getElementById('tutor').value;
         const date = document.getElementById('date').value;
         const time = document.getElementById('time').value;
-
-        // Save data to localStorage
-        localStorage.setItem('tutor', tutor);
-        localStorage.setItem('date', date);
-        localStorage.setItem('time', time);
-
-        // Redirect to sessions.html
-        window.location.href = 'sessions.html';
+    
+        const dateTime = `${date}T${time}:00`;  // Format the selected date and time
+    
+        // Create a new calendar event
+        const event = {
+          'summary': `Tutoring session with ${tutor}`,
+          'start': {
+            'dateTime': dateTime,
+            'timeZone': 'America/Los_Angeles'
+          },
+          'end': {
+            'dateTime': new Date(new Date(dateTime).getTime() + 60 * 60 * 1000).toISOString(), // 1-hour duration
+            'timeZone': 'America/Los_Angeles'
+          },
+          'reminders': {
+            'useDefault': false,
+            'overrides': [
+              {'method': 'email', 'minutes': 24 * 60},
+              {'method': 'popup', 'minutes': 10}
+            ]
+          }
+        };
+    
+        gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': event
+        }).then(function(response) {
+          console.log('Event created: ' + response.htmlLink);
+          alert('Your tutoring session has been added to your Google Calendar.');
+        });
       });
     </script>
+    
 
     <!-- Study Resources Section -->
     <section id="resources" class="container">
