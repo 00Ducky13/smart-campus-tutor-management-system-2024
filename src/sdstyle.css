@@ -5,6 +5,7 @@ html, body {
   background-color: white;
 }
 
+/* Header */
 .first-header {
   position: sticky;
   top: 0;
@@ -13,6 +14,7 @@ html, body {
   padding: 10px;
   border-bottom: 1px solid #ccc;
   color: white;
+  display: flex;
   justify-content: space-between;
 }
 
@@ -41,6 +43,7 @@ html, body {
   color: black;
 }
 
+/* Profile Picture */
 .profile-picture {
   position: absolute;
   top: 10px;
@@ -53,6 +56,7 @@ html, body {
   border-radius: 50%;
 }
 
+/* Schedule Form */
 #schedule-form {
   width: 100%;
   padding: 10px;
@@ -95,12 +99,13 @@ html, body {
   background-color: #ffb81c;
 }
 
+/* Footer */
 footer {
   background-color: #001f3f;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px;
+  padding: 0;
   height: 50px;
 }
 
@@ -108,10 +113,9 @@ footer p {
   color: white;
   text-align: center;
   margin: 0;
-  margin-bottom: 0;
 }
 
-/* Tutors Section - Grid layout */
+/* Tutors Section - Grid Layout */
 #tutors {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -167,15 +171,48 @@ footer p {
   color: gold;
 }
 
-/* Responsive Design - Adjust grid for smaller screens */
+/* Responsive Design */
 @media (max-width: 768px) {
   #tutors {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar li {
+    margin: 10px 0;
+  }
+  
+  .profile-img {
+    width: 40px;
+    height: 40px;
   }
 }
 
 @media (max-width: 480px) {
   #tutors {
     grid-template-columns: 1fr;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar li {
+    margin: 10px 0;
+  }
+
+  .first-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-img {
+    width: 30px;
+    height: 30px;
   }
 }
