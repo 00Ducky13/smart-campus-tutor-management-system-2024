@@ -58,23 +58,18 @@
     </section>
 
     <!-- Set Availability Section -->
-    <section id="availability" class="container">
-      <header>
-        <h2>Set Your Availability</h2>
-      </header>
+    <div id="availability" class="section container">
+      <div>
+          <h2>Set Your Availability</h2>
+      </div>
       <form id="availability-form">
-        <label for="available-date">Select Available Date:</label>
-        <input type="date" id="available-date" name="available-date" required />
-
-        <label for="start-time">Start Time:</label>
-        <input type="time" id="start-time" name="start-time" required />
-
-        <label for="end-time">End Time:</label>
-        <input type="time" id="end-time" name="end-time" required />
-
-        <button type="submit">Set Availability</button>
+          <input type="date" id="available-date" required>
+          <input type="time" id="start-time" required>
+          <input type="time" id="end-time" required>
+          <button type="submit">Add Availability</button>
       </form>
-    </section>
+      <div id="current-availability"></div>
+  </div>
 
     <!-- Upcoming Sessions Section -->
     <section id="sessions" class="container">
