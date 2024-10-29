@@ -18,7 +18,21 @@ html, body {
   justify-content: space-between;
   align-items: center; /* Center elements vertically */
 }
-
+#tutorGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 20px; /* Space between items */
+  margin: 20px;
+}
+.tutor-item {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: inherit;
+   text-decoration: inherit;
+}
 /* Navbar */
 .navbar ul {
   list-style-type: none;
