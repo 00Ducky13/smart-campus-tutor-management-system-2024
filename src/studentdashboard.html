@@ -57,7 +57,14 @@
     <button id="google-sign-in">Sign in to use Google calendar</button>
     
     </section>
-
+<script>
+  // Set the minimum date for the date input to today
+  document.addEventListener('DOMContentLoaded', function () {
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+    dateInput.min = today;
+  });
+</script>
     <!-- Study Resources Section -->
     
   </main>
