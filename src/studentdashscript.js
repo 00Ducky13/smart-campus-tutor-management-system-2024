@@ -122,7 +122,6 @@ function createTutorCard(tutor) {
                     </div>
                 ` : ''}
             </figcaption>
-            <div class="star-rating">â â â â â</div>
         </figure>
     `;
 }
