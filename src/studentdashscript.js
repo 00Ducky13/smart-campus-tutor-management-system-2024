@@ -32,8 +32,8 @@ document.getElementById('google-sign-in').addEventListener('click', async functi
 
 
 const GOOGLE_API_CONFIG = {
-    API_KEY: 'AIzaSyCuFkSqyeT1_waMrLxxZuXNj3UDqfrokMM',  // Use your API key here
-    CLIENT_ID: '327568585216-ek5dhddona5smuvo5g8mg3q499hvqiso.apps.googleusercontent.com',  // Use your client ID here
+    API_KEY: 'AIzaSyDHTkeo6lS8oYdvJvb0aE50_6iDw7EUOgc',  // Use your API key here
+    CLIENT_ID: '280280197401-imvqlfsjrgqf3sqmp2l4hc63uosf8l97.apps.googleusercontent.com',  // Use your client ID here
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
     SCOPES: 'https://www.googleapis.com/auth/calendar.events'
 };
@@ -52,45 +52,48 @@ async function initializeGoogleCalendar() {
         throw error;
     }
 }
-
 async function addToGoogleCalendar(sessionDetails) {
     try {
         const event = {
-            'summary': `Tutoring Session - ${sessionDetails.subject}`,
-            'description': `Tutoring session with ${sessionDetails.tutorName}`,
-            'start': {
-                'dateTime': sessionDetails.startDateTime,
-                'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+            summary: `Tutoring Session - ${sessionDetails.subject}`,
+            description: `Tutoring session with ${sessionDetails.tutorName}`,
+            start: {
+                dateTime: sessionDetails.startDateTime,
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
             },
-            'end': {
-                'dateTime': sessionDetails.endDateTime,
-                'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
+            end: {
+                dateTime: sessionDetails.endDateTime,
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
             },
-            'attendees': [
-                {'email': sessionDetails.studentEmail},
-                {'email': sessionDetails.tutorEmail}
+            attendees: [
+                { email: sessionDetails.studentEmail },
+                { email: sessionDetails.tutorEmail },
             ],
-            'reminders': {
-                'useDefault': false,
-                'overrides': [
-                    {'method': 'email', 'minutes': 24 * 60},
-                    {'method': 'popup', 'minutes': 30}
-                ]
-            }
+            reminders: {
+                useDefault: false,
+                overrides: [
+                    { method: 'email', minutes: 24 * 60 },
+                    { method: 'popup', minutes: 30 },
+                ],
+            },
         };
 
         const request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': event,
-            'sendUpdates': 'all'
+            calendarId: 'primary',
+            resource: event,
+            sendUpdates: 'all',
         });
-
-        return await request.execute();
+        
+        const response = await request; // Wait for execution
+        console.log('Event added:', response);
+        return response;
     } catch (error) {
         console.error('Error adding to Google Calendar:', error);
         throw error;
     }
 }
+
+
 
 // Keep your existing star rating functionality
 document.querySelectorAll('.star-rating input').forEach(star => {
@@ -176,28 +179,74 @@ function setupTutorCardListeners() {
     });
 }
 
-document.getElementById('schedule-form').addEventListener('submit', function(event) {
+document.getElementById('schedule-form').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    const tutor = document.getElementById('tutor').value;
+    const tutorSelect = document.getElementById('tutor');
     const date = document.getElementById('date').value;
     const time = document.getElementById('time').value;
+    const tutorId = tutorSelect.value;
 
-    // Validate form input
-    if (!tutor || !date || !time) {
+    if (!tutorId || !date || !time) {
         alert("Please select a tutor, date, and time.");
         return;
     }
 
-    // Save data to localStorage
-    localStorage.setItem('scheduledTutor', tutor);
-    localStorage.setItem('scheduledDate', date);
-    localStorage.setItem('scheduledTime', time);
+    try {
+        // Initialize Google Calendar
+        await initializeGoogleCalendar();
 
-    alert(`Session scheduled with ${tutor} on ${date} at ${time}`);
-    
-    // Redirect to sessions.html (you can change this as needed)
-    window.location.href = 'sessions.html';
+        // Get tutor details
+        const tutorDoc = await getDoc(doc(firestore, "tutors", tutorId));
+        const tutorData = tutorDoc.data();
+
+        // Get student details
+        const studentId = sessionStorage.getItem('currentUser');
+        const studentDoc = await getDoc(doc(firestore, "students", studentId));
+        const studentData = studentDoc.data();
+
+        // Calculate session times
+        const startDateTime = new Date(`${date}T${time}`);
+        const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // 1 hour session
+
+        // Prepare session data
+        const sessionData = {
+            tutorId,
+            tutorName: tutorData.fullname,
+            tutorEmail: tutorData.email,
+            studentId,
+            studentName: studentData.fullname,
+            studentEmail: studentData.email,
+            date,
+            time,
+            status: 'pending',
+            /* subject: tutorData.subjects[0] */ // You might want to add subject selection
+        };
+
+        // Save to Firebase
+        const sessionRef = await addDoc(collection(firestore, "sessions"), sessionData);
+
+        // Add to Google Calendar
+        await addToGoogleCalendar({
+            tutorName: tutorData.fullname,
+            tutorEmail: tutorData.email,
+            studentEmail: studentData.email,
+           /*  subject: tutorData.subjects[0], */
+            startDateTime: startDateTime.toISOString(),
+            endDateTime: endDateTime.toISOString()
+        });
+
+        // Update local storage
+        localStorage.setItem('scheduledTutor', tutorData.fullname);
+        localStorage.setItem('scheduledDate', date);
+        localStorage.setItem('scheduledTime', time);
+
+        alert('Session scheduled successfully and added to your Google Calendar!');
+        window.location.href = 'sessions.html';
+    } catch (error) {
+        console.error('Error scheduling session:', error);
+        alert('Error scheduling session. Please try again.');
+    }
 });
 
 
