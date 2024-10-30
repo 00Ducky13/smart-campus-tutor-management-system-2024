@@ -42,9 +42,9 @@ async function initializeGoogleCalendar() {
     try {
         await gapi.load('client:auth2');
         await gapi.client.init({
-            apiKey: GOOGLE_API_CONFIG.API_KEY,
-            clientId: GOOGLE_API_CONFIG.CLIENT_ID,
-            scope: GOOGLE_API_CONFIG.SCOPES,
+            apiKey: "AIzaSyDHTkeo6lS8oYdvJvb0aE50_6iDw7EUOgc",
+            clientId: "280280197401-imvqlfsjrgqf3sqmp2l4hc63uosf8l97.apps.googleusercontent.com",
+            scope: 'https://www.googleapis.com/auth/calendar.events',
         });
     } catch (error) {
         console.error('Error initializing Google Calendar:', error);
