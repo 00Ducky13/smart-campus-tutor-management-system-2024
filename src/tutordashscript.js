@@ -51,7 +51,11 @@ async function populateFields(){
 document.addEventListener('DOMContentLoaded', async function () {
     console.log(currentUser);
     document.getElementById("tutorDashHeader").innerHTML = "Welcome, Tutor";
-    populateFields();    
+    populateFields();
+    const userData = await getTutorFromID(currentUser);
+    if (userData && userData.availabilitySchedule) {
+        displayCurrentAvailability(userData.availabilitySchedule);
+    }   
 });
 
 document.getElementById('add-subject').addEventListener('click', function() {
@@ -139,36 +143,148 @@ async function saveProfile(event) {
 
     } 
 
-async function addAvailability(event){
-    event.preventDefault();
-    const availableDay = document.getElementById("available-date").value.trim();
-    const availableStartTime = document.getElementById("start-time").value.trim();
-    const availableEndTime = document.getElementById("end-time").value.trim();
-    let tempObj = {
-        day: availableDay,
-        starttime: availableStartTime,
-        endtime: availableEndTime
-    }
-    await getTutorFromID(currentUser).then(async (userData)=>{
-        let availabilityArray = userData.availability;
-        if (availabilityArray === undefined){
-            availabilityArray = []
+    async function addAvailability(event) {
+        event.preventDefault();
+        const availableDay = document.getElementById("available-date").value.trim();
+        const availableStartTime = document.getElementById("start-time").value.trim();
+        const availableEndTime = document.getElementById("end-time").value.trim();
+    
+        // Validate input
+        if (!availableDay || !availableStartTime || !availableEndTime) {
+            alert("Please fill in all availability fields");
+            return;
+        }
+    
+        await getTutorFromID(currentUser).then(async (userData) => {
+            let availabilityArray = userData.availabilitySchedule || {};
             
-        }
-        availabilityArray.push(tempObj);
-        const tempObj2 = {
-            availability: availabilityArray
-        }
-        await updateUserWithID(currentUser,tempObj2).then((res)=>{
-            if (res != "error"){
-                alert("Success")
+            // If this day doesn't exist in the schedule yet, create it
+            if (!availabilityArray[availableDay]) {
+                availabilityArray[availableDay] = [];
             }
-            else{
-                alert("An error occured");
+    
+            // Check for time slot overlap
+            const timeOverlap = availabilityArray[availableDay].some(slot => {
+                return (availableStartTime >= slot.starttime && availableStartTime < slot.endtime) ||
+                       (availableEndTime > slot.starttime && availableEndTime <= slot.endtime);
+            });
+    
+            if (timeOverlap) {
+                alert("This time slot overlaps with an existing availability. Please choose different hours.");
+                return;
             }
-        })
-    })
-}
+    
+            // Add new time slot
+            availabilityArray[availableDay].push({
+                starttime: availableStartTime,
+                endtime: availableEndTime
+            });
+    
+            // Sort time slots for this day
+            availabilityArray[availableDay].sort((a, b) => 
+                a.starttime.localeCompare(b.starttime)
+            );
+    
+            const tempObj = {
+                availabilitySchedule: availabilityArray
+            };
+    
+            await updateUserWithID(currentUser, tempObj).then((res) => {
+                if (res != "error") {
+                    alert("Availability added successfully");
+                    displayCurrentAvailability(availabilityArray);
+                    // Clear the form
+                    document.getElementById("available-date").value = "";
+                    document.getElementById("start-time").value = "";
+                    document.getElementById("end-time").value = "";
+                } else {
+                    alert("An error occurred while saving availability");
+                }
+            });
+        });
+    }
+    
+    // Function to display current availability
+    function displayCurrentAvailability(availabilitySchedule) {
+        const availabilityContainer = document.getElementById("current-availability");
+        if (!availabilityContainer) {
+            // Create container if it doesn't exist
+            const container = document.createElement('div');
+            container.id = 'current-availability';
+            container.className = 'mt-4';
+            document.getElementById('availability').appendChild(container);
+        }
+    
+        let availabilityHTML = '<h3>Current Availability Schedule</h3>';
+        
+        if (Object.keys(availabilitySchedule).length === 0) {
+            availabilityHTML += '<p>No availability set yet</p>';
+        } else {
+            availabilityHTML += '<div class="availability-grid">';
+            
+            // Sort days
+            const sortedDays = Object.keys(availabilitySchedule).sort();
+            
+            sortedDays.forEach(day => {
+                availabilityHTML += `
+                    <div class="day-schedule">
+                        <h4>${new Date(day).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h4>
+                        <ul>
+                `;
+                
+                availabilitySchedule[day].forEach((slot, index) => {
+                    availabilityHTML += `
+                        <li>
+                            ${slot.starttime} - ${slot.endtime}
+                            <button onclick="removeTimeSlot('${day}', ${index})" class="delete-slot">×</button>
+                        </li>
+                    `;
+                });
+                
+                availabilityHTML += `
+                        </ul>
+                    </div>
+                `;
+            });
+            
+            availabilityHTML += '</div>';
+        }
+    
+        document.getElementById("current-availability").innerHTML = availabilityHTML;
+    }
+    
+    // Function to remove a time slot
+    async function removeTimeSlot(day, slotIndex) {
+        const confirmed = confirm("Are you sure you want to remove this time slot?");
+        if (!confirmed) return;
+    
+        await getTutorFromID(currentUser).then(async (userData) => {
+            let availabilitySchedule = userData.availabilitySchedule || {};
+            
+            if (availabilitySchedule[day]) {
+                availabilitySchedule[day].splice(slotIndex, 1);
+                
+                // Remove the day if no more slots
+                if (availabilitySchedule[day].length === 0) {
+                    delete availabilitySchedule[day];
+                }
+    
+                const tempObj = {
+                    availabilitySchedule: availabilitySchedule
+                };
+    
+                await updateUserWithID(currentUser, tempObj).then((res) => {
+                    if (res != "error") {
+                        displayCurrentAvailability(availabilitySchedule);
+                    } else {
+                        alert("Error removing time slot");
+                    }
+                });
+            }
+        });
+    }
+
+
 // Attach the saveProfile function to the form submission
 document.getElementById("profile-form").addEventListener("submit", saveProfile);
 document.getElementById("availability-form").addEventListener("submit", addAvailability);

@@ -58,23 +58,18 @@
     </section>
 
     <!-- Set Availability Section -->
-    <section id="availability" class="container">
-      <header>
-        <h2>Set Your Availability</h2>
-      </header>
+    <div id="availability" class="section container">
+      <div>
+          <h2>Set Your Availability</h2>
+      </div>
       <form id="availability-form">
-        <label for="available-date">Select Available Date:</label>
-        <input type="date" id="available-date" name="available-date" required />
-
-        <label for="start-time">Start Time:</label>
-        <input type="time" id="start-time" name="start-time" required />
-
-        <label for="end-time">End Time:</label>
-        <input type="time" id="end-time" name="end-time" required />
-
-        <button type="submit">Set Availability</button>
+          <input type="date" id="available-date" required>
+          <input type="time" id="start-time" required>
+          <input type="time" id="end-time" required>
+          <button type="submit">Add Availability</button>
       </form>
-    </section>
+      <div id="current-availability"></div>
+  </div>
 
     <!-- Upcoming Sessions Section -->
     <section id="sessions" class="container">
@@ -88,21 +83,11 @@
             <th>Date</th>
             <th>Time</th>
             <th>Subject</th>
+            <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Alice Johnson</td>
-            <td>2024-09-22</td>
-            <td>10:00 AM</td>
-            <td>Mathematics</td>
-          </tr>
-          <tr>
-            <td>Bob Smith</td>
-            <td>2024-09-23</td>
-            <td>12:00 PM</td>
-            <td>Physics</td>
-          </tr>
+        <tbody id="session-list">
+          
         </tbody>
       </table>
     </section>
