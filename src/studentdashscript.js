@@ -176,74 +176,28 @@ function setupTutorCardListeners() {
     });
 }
 
-document.getElementById('schedule-form').addEventListener('submit', async function(event) {
+document.getElementById('schedule-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const tutorSelect = document.getElementById('tutor');
+    const tutor = document.getElementById('tutor').value;
     const date = document.getElementById('date').value;
     const time = document.getElementById('time').value;
-    const tutorId = tutorSelect.value;
 
-    if (!tutorId || !date || !time) {
+    // Validate form input
+    if (!tutor || !date || !time) {
         alert("Please select a tutor, date, and time.");
         return;
     }
 
-    try {
-        // Initialize Google Calendar
-        await initializeGoogleCalendar();
+    // Save data to localStorage
+    localStorage.setItem('scheduledTutor', tutor);
+    localStorage.setItem('scheduledDate', date);
+    localStorage.setItem('scheduledTime', time);
 
-        // Get tutor details
-        const tutorDoc = await getDoc(doc(firestore, "tutors", tutorId));
-        const tutorData = tutorDoc.data();
-
-        // Get student details
-        const studentId = sessionStorage.getItem('currentUser');
-        const studentDoc = await getDoc(doc(firestore, "students", studentId));
-        const studentData = studentDoc.data();
-
-        // Calculate session times
-        const startDateTime = new Date(`${date}T${time}`);
-        const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // 1 hour session
-
-        // Prepare session data
-        const sessionData = {
-            tutorId,
-            tutorName: tutorData.fullname,
-            tutorEmail: tutorData.email,
-            studentId,
-            studentName: studentData.fullname,
-            studentEmail: studentData.email,
-            date,
-            time,
-            status: 'pending',
-            /* subject: tutorData.subjects[0] */ // You might want to add subject selection
-        };
-
-        // Save to Firebase
-        const sessionRef = await addDoc(collection(firestore, "sessions"), sessionData);
-
-        // Add to Google Calendar
-        await addToGoogleCalendar({
-            tutorName: tutorData.fullname,
-            tutorEmail: tutorData.email,
-            studentEmail: studentData.email,
-           /*  subject: tutorData.subjects[0], */
-            startDateTime: startDateTime.toISOString(),
-            endDateTime: endDateTime.toISOString()
-        });
-
-        // Update local storage
-        localStorage.setItem('scheduledTutor', tutorData.fullname);
-        localStorage.setItem('scheduledDate', date);
-        localStorage.setItem('scheduledTime', time);
-
-        alert('Session scheduled successfully and added to your Google Calendar!');
-        window.location.href = 'sessions.html';
-    } catch (error) {
-        console.error('Error scheduling session:', error);
-        alert('Error scheduling session. Please try again.');
-    }
+    alert(`Session scheduled with ${tutor} on ${date} at ${time}`);
+    
+    // Redirect to sessions.html (you can change this as needed)
+    window.location.href = 'sessions.html';
 });
 
 
