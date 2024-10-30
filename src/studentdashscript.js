@@ -32,8 +32,8 @@ document.getElementById('google-sign-in').addEventListener('click', async functi
 
 
 const GOOGLE_API_CONFIG = {
-    API_KEY: 'AIzaSyDHTkeo6lS8oYdvJvb0aE50_6iDw7EUOgc',  // Use your API key here
-    CLIENT_ID: '280280197401-imvqlfsjrgqf3sqmp2l4hc63uosf8l97.apps.googleusercontent.com',  // Use your client ID here
+    API_KEY: 'AIzaSyCuFkSqyeT1_waMrLxxZuXNj3UDqfrokMM',  // Use your API key here
+    CLIENT_ID: '327568585216-ek5dhddona5smuvo5g8mg3q499hvqiso.apps.googleusercontent.com',  // Use your client ID here
     discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
     SCOPES: 'https://www.googleapis.com/auth/calendar.events'
 };
