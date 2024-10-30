@@ -42,58 +42,54 @@ async function initializeGoogleCalendar() {
     try {
         await gapi.load('client:auth2');
         await gapi.client.init({
-            apiKey: "AIzaSyDHTkeo6lS8oYdvJvb0aE50_6iDw7EUOgc",
-            clientId: "280280197401-imvqlfsjrgqf3sqmp2l4hc63uosf8l97.apps.googleusercontent.com",
-            scope: 'https://www.googleapis.com/auth/calendar.events',
+            apiKey: GOOGLE_API_CONFIG.API_KEY,
+            clientId: GOOGLE_API_CONFIG.CLIENT_ID,
+            scope: GOOGLE_API_CONFIG.SCOPES,
         });
-        gapi.auth2.getAuthInstance().signIn();
     } catch (error) {
         console.error('Error initializing Google Calendar:', error);
         throw error;
     }
 }
+
 async function addToGoogleCalendar(sessionDetails) {
     try {
         const event = {
-            summary: `Tutoring Session - ${sessionDetails.subject}`,
-            description: `Tutoring session with ${sessionDetails.tutorName}`,
-            start: {
-                dateTime: sessionDetails.startDateTime,
-                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            'summary': `Tutoring Session - ${sessionDetails.subject}`,
+            'description': `Tutoring session with ${sessionDetails.tutorName}`,
+            'start': {
+                'dateTime': sessionDetails.startDateTime,
+                'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
             },
-            end: {
-                dateTime: sessionDetails.endDateTime,
-                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            'end': {
+                'dateTime': sessionDetails.endDateTime,
+                'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
             },
-            attendees: [
-                { email: sessionDetails.studentEmail },
-                { email: sessionDetails.tutorEmail },
+            'attendees': [
+                {'email': sessionDetails.studentEmail},
+                {'email': sessionDetails.tutorEmail}
             ],
-            reminders: {
-                useDefault: false,
-                overrides: [
-                    { method: 'email', minutes: 24 * 60 },
-                    { method: 'popup', minutes: 30 },
-                ],
-            },
+            'reminders': {
+                'useDefault': false,
+                'overrides': [
+                    {'method': 'email', 'minutes': 24 * 60},
+                    {'method': 'popup', 'minutes': 30}
+                ]
+            }
         };
 
         const request = gapi.client.calendar.events.insert({
-            calendarId: 'primary',
-            resource: event,
-            sendUpdates: 'all',
+            'calendarId': 'primary',
+            'resource': event,
+            'sendUpdates': 'all'
         });
-        
-        const response = await request; // Wait for execution
-        console.log('Event added:', response);
-        return response;
+
+        return await request.execute();
     } catch (error) {
         console.error('Error adding to Google Calendar:', error);
         throw error;
     }
 }
-
-
 
 // Keep your existing star rating functionality
 document.querySelectorAll('.star-rating input').forEach(star => {
@@ -126,7 +122,7 @@ function createTutorCard(tutor) {
                     </div>
                 ` : ''}
             </figcaption>
-            <div class="star-rating">★ ★ ★ ★ ★</div>
+            <div class="star-rating">â â â â â</div>
         </figure>
     `;
 }
