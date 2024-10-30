@@ -46,6 +46,7 @@ async function initializeGoogleCalendar() {
             clientId: "280280197401-imvqlfsjrgqf3sqmp2l4hc63uosf8l97.apps.googleusercontent.com",
             scope: 'https://www.googleapis.com/auth/calendar.events',
         });
+        gapi.auth2.getAuthInstance().signIn();
     } catch (error) {
         console.error('Error initializing Google Calendar:', error);
         throw error;
